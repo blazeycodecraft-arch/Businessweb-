@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blazey Code & Craft | Professional Web Design & Development</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #050811;
+            --card-bg: #0f172a;
+            --card-border: #1e293b;
+            --accent-primary: #38bdf8;
+            --accent-secondary: #818cf8;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --whatsapp: #25d366;
+            --facebook: #1877f2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Outfit', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Floating background glow elements */
+        .bg-glow {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.05));
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: floatGlow 10s infinite alternate ease-in-out;
+        }
+        .glow-1 { top: 10%; left: -10%; }
+        .glow-2 { top: 50%; right: -10%; animation-delay: 3s; }
+        .glow-3 { bottom: 10%; left: 30%; animation-delay: 6s; }
+
+        @keyframes floatGlow {
+            0% { transform: translateY(0) scale(1); }
+            100% { transform: translateY(-40px) scale(1.1); }
+        }
+
+        /* Header / Navbar */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(5, 8, 17, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--card-border);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 24px;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 140px 20px 80px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, #38bdf8, #a855f7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #38bdf8, #6366f1);
+            color: white;
+            box-shadow: 0 4px 20px rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 60px;
+            font-size: 1.1rem;
+        }
+
+        /* About / Services Overview Section */
+        .overview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 40px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-primary);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 25px;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        /* Pricing Table Section */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .price-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 45px 35px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+
+        .price-card.popular {
+            border: 2px solid var(--accent-primary);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.9) 0%, rgba(30, 41, 59, 0.5) 100%);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 35px;
+            background: var(--accent-primary);
+            color: #050811;
+            padding: 5px 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        .price-card h3 {
+            font-size: 1.6rem;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 10px;
+        }
+
+        .price-card .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 25px;
+        }
+
+        .price-features {
+            list-style: none;
+            margin-bottom: 35px;
+            flex-grow: 1;
+        }
+
+        .price-features li {
+            padding: 10px 0;
+            color: var(--text-muted);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.95rem;
+        }
+
+        .price-features li i {
+            color: var(--accent-primary);
+        }
+
+        .custom-slot {
+            background: rgba(56, 189, 248, 0.05);
+            border: 1px dashed rgba(56, 189, 248, 0.3);
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--accent-primary);
+            margin-bottom: 20px;
+        }
+
+        /* Contact Section / Call to Action */
+        .contact-box {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            border: 1px solid var(--card-border);
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-box h2 {
+            font-size: 2.5rem;
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 1.1rem;
+        }
+
+        .contact-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-whatsapp {
+            background-color: var(--whatsapp);
+            color: white;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #20ba5a;
+            transform: translateY(-3px);
+        }
+
+        .btn-facebook {
+            background-color: var(--facebook);
+            color: white;
+            box-shadow: 0 4px 20px rgba(24, 119, 242, 0.3);
+        }
+
+        .btn-facebook:hover {
+            background-color: #166fe5;
+            transform: translateY(-3px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            background: #03050a;
+            color: var(--text-muted);
+            border-top: 1px solid var(--card-border);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-glow glow-1"></div>
+    <div class="bg-glow glow-2"></div>
+    <div class="bg-glow glow-3"></div>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">🇱🇰 Blazey Code & Craft</div>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services & Benefits</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Transforming Ideas into <span>Digital Masterpieces</span></h1>
+            <p>Welcome to Blazey Code & Craft. We build lightning-fast, highly responsive, and professionally designed websites tailored to elevate your business and brand presence.</p>
+            <div class="hero-btns">
+                <a href="#contact" class="btn btn-primary"><i class="fas fa-rocket"></i> Start Your Project</a>
+                <a href="#pricing" class="btn" style="background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); color: white;"><i class="fas fa-tag"></i> View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <h2 class="section-title">What We Do & Why Choose Us</h2>
+        <p class="section-subtitle">Crafted with precision for businesses, education sectors, and creative brands.</p>
+        
+        <div class="overview-grid">
+            <div class="card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Custom Web Development</h3>
+                <p>We build tailored websites for corporate businesses, educational institutions, e-commerce stores, and personal portfolios using clean, modern code and powerful responsive frameworks.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Who We Serve</h3>
+                <p>Our solutions are designed for ambitious entrepreneurs, local and international businesses, educational academies, startups, and service providers looking to scale up online.</p>
+            </div>
+            <div class="card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Business Growth & Benefits</h3>
+                <p>A professional website builds instant credibility, expands your market reach 24/7, showcases your services effectively, and converts casual visitors into loyal paying customers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing">
+        <h2 class="section-title">Investment Plans</h2>
+        <p class="section-subtitle">Transparent packages designed to fit your project scope and budget.</p>
+
+        <div class="pricing-grid">
+            <div class="price-card">
+                <h3>Basic</h3>
+                <div class="price">LKR 15K-30K</div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> Single Page / Landing Page</li>
+                    <li><i class="fas fa-check"></i> Fully Responsive Design (Mobile & PC)</li>
+                    <li><i class="fas fa-check"></i> WhatsApp Direct Contact Button</li>
+                    <li><i class="fas fa-check"></i> Basic SEO Setup</li>
+                    <li><i class="fas fa-check"></i> Fast Loading Speed</li>
+                </ul>
+                <div class="custom-slot">[ Prices may vary depending on project scope, complexity, and delivery timeline. ]</div>
+                <a href="https://wa.me/94742781922?text=Hi%20Blazey,%20I'm%20interested%20in%20the%20Basic%20Package!" target="_blank" class="btn btn-primary" style="justify-content: center;">Choose Basic</a>
+            </div>
+
+            <div class="price-card popular">
+                <div class="popular-badge">Most Popular</div>
+                <h3>Standard</h3>
+                <div class="price">LKR 25K-35K</div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> Multi-Page Website (Home, About, Services, Contact)</li>
+                    <li><i class="fas fa-check"></i> Advanced UI/UX Custom Design</li>
+                    <li><i class="fas fa-check"></i> Interactive Portfolio / Project Section</li>
+                    <li><i class="fas fa-check"></i> Social Media Integration (FB, WhatsApp)</li>
+                    <li><i class="fas fa-check"></i> On-Page SEO Optimization</li>
+                </ul>
+                <div class="custom-slot">[Prices may vary depending on project scope, complexity, and delivery timeline.]</div>
+                <a href="https://wa.me/94742781922?text=Hi%20Blazey,%20I'm%20interested%20in%20the%20Standard%20Package!" target="_blank" class="btn btn-primary" style="justify-content: center;">Choose Standard</a>
+            </div>
+
+            <div class="price-card">
+                <h3>Premium</h3>
+                <div class="price">LKR 45K (Depending on reatures)</div>
+                <ul class="price-features">
+                    <li><i class="fas fa-check"></i> Full Custom Web Application / E-Commerce</li>
+                    <li><i class="fas fa-check"></i> Premium Animations & Interactions</li>
+                    <li><i class="fas fa-check"></i> Advanced Database & Secure Backend</li>
+                    <li><i class="fas fa-check"></i> Priority Support & Maintenance</li>
+                    <li><i class="fas fa-check"></i> Complete Brand Integration</li>
+                </ul>
+                <div class="custom-slot">[Prices may vary depending on project scope, complexity, and delivery timeline. ]</div>
+                <a href="https://wa.me/94742781922?text=Hi%20Blazey,%20I%20interested%20in%20the%20Premium%20Package!" target="_blank" class="btn btn-primary" style="justify-content: center;">Choose Premium</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-box">
+            <h2>Ready to Build Your Website?</h2>
+            <p>Let's turn your vision into a powerful digital reality. Contact us directly via WhatsApp or Facebook to get started today!</p>
+            <div class="contact-buttons">
+                <a href="https://wa.me/94742781922?text=Hi%20Blazey,%20I%20want%20to%20discuss%20a%20web%20project!" target="_blank" class="btn btn-whatsapp">
+                    <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> WhatsApp (send a message)
+                </a>
+                <a href="https://www.facebook.com/share/1JwDdXfYie/" target="_blank" class="btn btn-facebook">
+                    <i class="fab fa-facebook-f" style="font-size: 1.2rem;"></i> Facebook Page
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Blazey Code & Craft. All Rights Reserved. | Designed for Excellence.</p>
+    </footer>
+
+</body>
+</html>
